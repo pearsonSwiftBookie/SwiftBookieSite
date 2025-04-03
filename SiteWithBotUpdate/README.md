@@ -1,6 +1,104 @@
-# Swiftbookie
+# Swiftbookie - AI-Powered Scheduling Platform
 
-Swiftbookie is an AI-powered scheduling platform that makes booking appointments effortless. The integrated AI assistant helps users find the perfect time slots and answers scheduling questions.
+A modern scheduling platform built with Next.js featuring an AI assistant to help manage your calendar and appointments.
+
+## Features
+
+- Next.js framework for optimal performance
+- AI-powered scheduling assistant
+- Calendar integration
+- Responsive design
+- API endpoints for calendar and contact management
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 14.6.0 or newer
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/swiftbookie.git
+   cd swiftbookie
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+
+3. Create a `.env.local` file in the root directory and add your environment variables:
+   ```
+   # API Keys and environment variables
+   NEXT_PUBLIC_API_URL=http://localhost:3000/api
+   ```
+
+### Development
+
+Run the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
+
+### Building for Production
+
+Build the application for production:
+
+```bash
+npm run build
+# or
+yarn build
+```
+
+Start the production server:
+
+```bash
+npm run start
+# or
+yarn start
+```
+
+## Deployment on Vercel
+
+The easiest way to deploy this Next.js app is using [Vercel](https://vercel.com/).
+
+1. Push your code to a Git repository (GitHub, GitLab, BitBucket)
+2. Import your project to Vercel
+3. Vercel will detect it's a Next.js app and use the optimal build settings
+4. Your app will be deployed to a production URL
+
+## Project Structure
+
+```
+swiftbookie/
+├── pages/            # Next.js pages
+│   ├── api/          # API routes
+│   ├── _app.js       # Custom App component
+│   └── index.js      # Homepage
+├── public/           # Static assets
+│   ├── css/          # CSS files
+│   ├── js/           # JavaScript files
+│   └── images/       # Image files
+├── styles/           # Global styles
+│   └── globals.css   # Global CSS
+├── .env.local        # Environment variables (create this)
+├── next.config.js    # Next.js configuration
+└── package.json      # Project dependencies
+```
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Security Updates
 
