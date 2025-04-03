@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "AI-powered scheduling platform with embedded calendar",
   "main": "server.js",
+  "engines": {
+    "node": "18.x"
+  },
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js"
@@ -13,8 +16,5 @@
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
-  },
-  "engines": {
-    "node": ">=16.0.0"
   }
 } 
