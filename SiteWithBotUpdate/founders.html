@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meet the Founders - Swiftbookie</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        :root {
+            --primary-color: #1E90FF;  /* Dodger Blue */
+            --secondary-color: #4169E1;  /* Royal Blue */
+            --dark-bg: #ffffff;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --accent-color: #1E90FF;
+            --border-color: rgba(30, 144, 255, 0.2);
+            --navbar-bg: rgba(255, 255, 255, 0.95);
+            --navbar-text: #333333;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: var(--navbar-bg);
+            backdrop-filter: blur(10px);
+            padding: 15px 30px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 900;
+            border-bottom: 1px solid var(--border-color);
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links a {
+            color: var(--navbar-text);
+            text-decoration: none;
+            margin-left: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--primary-color);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-links a:hover::before {
+            transform: translateX(0);
+        }
+
+        /* Animation Keyframes */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        /* Founders Section */
+        .founders-section {
+            padding: 120px 20px 80px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.95));
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .founders-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" fill="%231E90FF" opacity="0.1"/></svg>');
+            opacity: 0.5;
+            z-index: 0;
+        }
+
+        .founders-section h1 {
+            text-align: center;
+            font-size: 3em;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .founders-section p {
+            text-align: center;
+            max-width: 600px;
+            margin-bottom: 50px;
+            color: var(--text-color);
+            opacity: 0.8;
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+        }
+
+        .founders-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .founder-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(30, 144, 255, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+            animation: scaleIn 0.6s ease-out backwards;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .founder-card:nth-child(1) { animation-delay: 0.4s; }
+        .founder-card:nth-child(2) { animation-delay: 0.6s; }
+        .founder-card:nth-child(3) { animation-delay: 0.8s; }
+
+        .founder-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(30, 144, 255, 0.1), rgba(65, 105, 225, 0.1));
+            z-index: 1;
+        }
+
+        .founder-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 0 30px rgba(30, 144, 255, 0.2);
+        }
+
+        .founder-image {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 30px;
+            border-radius: 50%;
+            overflow: hidden;
+            position: relative;
+            border: 5px solid white;
+            box-shadow: 0 0 20px rgba(30, 144, 255, 0.2);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .founder-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .founder-card:hover .founder-image img {
+            transform: scale(1.1);
+        }
+
+        .founder-image i {
+            font-size: 100px;
+            color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .founder-card h3 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: var(--text-color);
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 0.6s ease-out 0.2s backwards;
+        }
+
+        .founder-title {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+            position: relative;
+            z-index: 2;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: fadeInUp 0.6s ease-out 0.3s backwards;
+        }
+
+        .founder-bio {
+            color: var(--text-color);
+            opacity: 0.8;
+            line-height: 1.6;
+            font-size: 1.1em;
+            position: relative;
+            z-index: 2;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.6s ease-out 0.4s backwards;
+            flex-grow: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 6;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .founder-social {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 0.6s ease-out 0.5s backwards;
+        }
+
+        .founder-social a {
+            color: var(--primary-color);
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            transform-origin: center;
+        }
+
+        .founder-social a:hover {
+            color: var(--secondary-color);
+            transform: translateY(-3px) scale(1.2);
+        }
+
+        .founder-email {
+            margin-top: auto;
+            padding-top: 20px;
+            font-size: 0.9em;
+            color: var(--text-color);
+            opacity: 0.8;
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 0.6s ease-out 0.6s backwards;
+        }
+
+        .founder-email a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .founder-email a:hover {
+            color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .founders-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .founders-section h1 {
+                font-size: 2.5em;
+            }
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(26, 26, 46, 0.95);
+            color: #ffffff;
+            padding: 40px 20px;
+            margin-top: 60px;
+            border-top: 1px solid rgba(30, 144, 255, 0.2);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: #ffffff;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            transform-origin: center;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+            transform: translateY(-3px) scale(1.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="index.html" class="logo">Swiftbookie</a>
+            <div class="nav-links">
+                <a href="index.html#features">Features</a>
+                <a href="index.html#schedule">Schedule</a>
+                <a href="founders.html">Meet the Founders</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Founders Section -->
+    <section class="founders-section">
+        <h1>Meet Our Founders</h1>
+        <p>Get to know the passionate team behind Swiftbookie, dedicated to revolutionizing appointment scheduling with AI technology.</p>
+        <div class="founders-grid">
+            <div class="founder-card">
+                <div class="founder-image">
+                    <img src="images/founders/moustapha.png" alt="Moustapha Gueye">
+                </div>
+                <h3>Moustapha Gueye</h3>
+                <p class="founder-title">CEO & Co-Founder</p>
+                <p class="founder-bio">As CEO and lead designer at Swiftbookie, Moustapha combines creative vision with technical expertise to craft exceptional user experiences. His talent for intuitive interface design and strong communication skills shape our platform's distinctive style while building lasting relationships with clients. Through his leadership in design thinking and user-centered development, he ensures Swiftbookie delivers beautiful, efficient, and accessible digital solutions.</p>
+                <div class="founder-email">
+                    <a href="mailto:moustapha@swiftbookie.com">moustapha@swiftbookie.com</a>
+                </div>
+            </div>
+            <div class="founder-card">
+                <div class="founder-image">
+                    <img src="images/founders/pearson.png" alt="Pearson Hill">
+                </div>
+                <h3>Pearson Hill</h3>
+                <p class="founder-title">CTO & Co-Founder</p>
+                <p class="founder-bio">As CTO at Swiftbookie, Pearson drives the development of our cutting-edge AI automation solutions. His expertise in artificial intelligence and innovative engineering enables businesses to scale smarter and faster. Specializing in prompt engineering and custom model development, he ensures our technology not only performs but continuously adapts and evolves to deliver measurable results.</p>
+                <div class="founder-email">
+                    <a href="mailto:pearson@swiftbookie.com">pearson@swiftbookie.com</a>
+                </div>
+            </div>
+            <div class="founder-card">
+                <div class="founder-image">
+                    <img src="images/founders/carson.png" alt="Carson Hill">
+                </div>
+                <h3>Carson Hill</h3>
+                <p class="founder-title">COO & Co-Founder</p>
+                <p class="founder-bio">As COO at Swiftbookie, Carson masterfully leads our marketing strategies and business operations. His exceptional communication skills and deep understanding of digital marketing make him the perfect voice for our brand. Through expert community engagement and compelling storytelling, he builds meaningful connections while driving growth and ensuring our message resonates authentically with our audience.</p>
+                <div class="founder-email">
+                    <a href="mailto:carson@swiftbookie.com">carson@swiftbookie.com</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About Swiftbookie</h4>
+                <p>Your one-stop solution for seamless appointment scheduling and management.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html#features">Features</a></li>
+                    <li><a href="index.html#schedule">Schedule</a></li>
+                    <li><a href="founders.html">Meet the Founders</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <ul>
+                    <li>Email: info@swiftbookie.com</li>
+                    <li>Phone: (555) 123-4567</li>
+                    <li>Address: 123 Booking Street</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 
