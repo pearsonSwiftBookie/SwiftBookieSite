@@ -9,7 +9,7 @@ async function initializeOpenAIAssistant() {
         // Clear any existing typing indicators first
         const existingIndicators = document.querySelectorAll('.typing-indicator');
         existingIndicators.forEach(indicator => {
-            indicator.style.display = 'none';
+            if (indicator) indicator.style.display = 'none';
         });
 
         // Use the existing assistant instead of creating a new one
@@ -20,7 +20,7 @@ async function initializeOpenAIAssistant() {
         
         return true;
     } catch (error) {
-        console.error('Error initializing OpenAI assistant:', error.response?.data || error.message);
+        console.error('Error initializing OpenAI assistant:', error);
         const now = new Date();
         const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
         addPhoneMessage('Sorry, there was an error connecting to the AI assistant. Please try again later.', 'assistant', time);
@@ -36,7 +36,14 @@ async function createNewThread() {
         const response = await axios.post('/api/chat', {
             endpoint: 'threads',
             data: {}
+        }).catch(err => {
+            console.error('API error:', err);
+            throw new Error('Failed to create thread. API may not be available.');
         });
+        
+        if (!response || !response.data || !response.data.id) {
+            throw new Error('Invalid response from API');
+        }
         
         currentThreadId = response.data.id;
         console.log('New thread created:', currentThreadId);
@@ -63,10 +70,10 @@ async function createNewThread() {
         addPhoneMessage(welcomeMessage, 'assistant', time);
         return currentThreadId;
     } catch (error) {
-        console.error('Error creating thread:', error.response?.data || error.message);
+        console.error('Error creating thread:', error);
         const now = new Date();
         const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-        addPhoneMessage('Sorry, there was an error starting our conversation. Please try refreshing the page.', 'assistant', time);
+        addPhoneMessage('Sorry, there was an error starting our conversation. Please refresh the page or try again later.', 'assistant', time);
         throw error;
     }
 }
@@ -74,6 +81,11 @@ async function createNewThread() {
 // Phone Chatbot functionality
 function togglePhoneChat() {
     const phoneChat = document.querySelector('.phone-chatbot');
+    if (!phoneChat) {
+        console.error("Phone chat element not found");
+        return;
+    }
+    
     const currentDisplay = phoneChat.style.display;
     phoneChat.style.display = currentDisplay === 'none' ? 'flex' : 'none';
     
@@ -85,8 +97,19 @@ function togglePhoneChat() {
             typingIndicator.style.display = 'flex';
         }
         
-        // Initialize the assistant
-        initializeOpenAIAssistant();
+        try {
+            // Initialize the assistant
+            initializeOpenAIAssistant().catch(err => {
+                const now = new Date();
+                const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                addPhoneMessage("Sorry, I'm having trouble connecting to my brain. Please check your console for details and make sure the API key is set up correctly.", 'assistant', time);
+            });
+        } catch (error) {
+            console.error("Error initializing assistant:", error);
+            const now = new Date();
+            const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            addPhoneMessage("Sorry, I couldn't initialize properly. Please try refreshing the page.", 'assistant', time);
+        }
     }
 }
 
@@ -307,24 +330,30 @@ function addPhoneMessage(message, role, time) {
 
 // Handle Enter key in the phone input field
 document.addEventListener('DOMContentLoaded', function() {
-    const phoneInput = document.getElementById('phoneInput');
-    if (phoneInput) {
-        phoneInput.addEventListener('keypress', function(event) {
-            if (event.key === 'Enter') {
-                event.preventDefault();
-                sendPhoneMessage();
-            }
-        });
-    }
-    
-    // Clear any existing thread ID from local storage to start fresh
-    localStorage.removeItem('swiftbookieThreadId');
-    currentThreadId = null;
-    
-    // Initialize chat functionality if the chatbot is visible on page load
-    const phoneChat = document.querySelector('.phone-chatbot');
-    if (phoneChat && phoneChat.style.display === 'flex') {
-        initializeOpenAIAssistant();
+    try {
+        const phoneInput = document.getElementById('phoneInput');
+        if (phoneInput) {
+            phoneInput.addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    sendPhoneMessage();
+                }
+            });
+        } else {
+            console.warn('phoneInput element not found');
+        }
+        
+        // Clear any existing thread ID from local storage to start fresh
+        localStorage.removeItem('swiftbookieThreadId');
+        currentThreadId = null;
+        
+        // Initialize chat functionality if the chatbot is visible on page load
+        const phoneChat = document.querySelector('.phone-chatbot');
+        if (phoneChat && phoneChat.style.display === 'flex') {
+            initializeOpenAIAssistant();
+        }
+    } catch (error) {
+        console.error('Error in DOMContentLoaded event:', error);
     }
 });
 

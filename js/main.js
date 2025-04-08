@@ -1,6 +1,6 @@
 // OpenAI Assistant Configuration
-const OPENAI_API_KEY = '';
-let ASSISTANT_ID = 'asst_LphpbIJDzb0QSljhU6KEeaoB'; // Using your specific assistant
+// The OpenAI API key is now securely stored on the server
+// No need to define ASSISTANT_ID here, it's already in ai.js
 let currentThreadId = null;
 
 // Initialize OpenAI Assistant
@@ -12,7 +12,7 @@ async function initializeOpenAIAssistant() {
         // Create a new thread for this conversation
         createNewThread();
     } catch (error) {
-        console.error('Error initializing OpenAI assistant:', error.response?.data || error.message);
+        console.error('Error initializing OpenAI assistant:', error);
         addMessage('Sorry, there was an error connecting to the AI assistant. Please try again later.', 'assistant');
     }
 }
@@ -20,12 +20,9 @@ async function initializeOpenAIAssistant() {
 // Create a new conversation thread
 async function createNewThread() {
     try {
-        const response = await axios.post('https://api.openai.com/v1/threads', {}, {
-            headers: {
-                'Authorization': `Bearer ${OPENAI_API_KEY}`,
-                'Content-Type': 'application/json',
-                'OpenAI-Beta': 'assistants=v2'
-            }
+        const response = await axios.post('/api/chat', {
+            endpoint: 'threads',
+            data: {}
         });
         
         currentThreadId = response.data.id;
@@ -38,7 +35,7 @@ async function createNewThread() {
         const welcomeMessage = "Hello! I'm your Swiftbookie AI assistant. How can I help you today with scheduling or appointment questions?";
         addMessage(welcomeMessage, 'assistant');
     } catch (error) {
-        console.error('Error creating thread:', error.response?.data || error.message);
+        console.error('Error creating thread:', error);
         addMessage('Sorry, there was an error starting our conversation. Please try refreshing the page.', 'assistant');
     }
 }
@@ -59,7 +56,7 @@ async function sendMessageToAssistant(message) {
         await addMessageToThread(message);
         
     } catch (error) {
-        console.error('Error sending message to assistant:', error.response?.data || error.message);
+        console.error('Error sending message to assistant:', error);
         addMessage('Sorry, there was an error communicating with the AI assistant. Please try again.', 'assistant');
     }
 }
@@ -68,33 +65,27 @@ async function sendMessageToAssistant(message) {
 async function addMessageToThread(message) {
     try {
         // Add the user message to the thread
-        await axios.post(`https://api.openai.com/v1/threads/${currentThreadId}/messages`, {
-            role: "user",
-            content: message
-        }, {
-            headers: {
-                'Authorization': `Bearer ${OPENAI_API_KEY}`,
-                'Content-Type': 'application/json',
-                'OpenAI-Beta': 'assistants=v2'
+        await axios.post('/api/chat', {
+            endpoint: `threads/${currentThreadId}/messages`,
+            data: {
+                role: "user",
+                content: message
             }
         });
         
         // Run the assistant to generate a response using the specific assistant ID
-        const runResponse = await axios.post(`https://api.openai.com/v1/threads/${currentThreadId}/runs`, {
-            assistant_id: ASSISTANT_ID,
-            instructions: "Please help the user with scheduling and booking appointments. If the user has selected a date/time, acknowledge it in your response."
-        }, {
-            headers: {
-                'Authorization': `Bearer ${OPENAI_API_KEY}`,
-                'Content-Type': 'application/json',
-                'OpenAI-Beta': 'assistants=v2'
+        const runResponse = await axios.post('/api/chat', {
+            endpoint: `threads/${currentThreadId}/runs`,
+            data: {
+                assistant_id: ASSISTANT_ID,
+                instructions: "Please help the user with scheduling and booking appointments. If the user has selected a date/time, acknowledge it in your response."
             }
         });
         
         // Poll for the response
         await pollForResponse(runResponse.data.id);
     } catch (error) {
-        console.error('Error in thread communication:', error.response?.data || error.message);
+        console.error('Error in thread communication:', error);
         throw error; // Let the parent function handle this
     }
 }
@@ -127,26 +118,14 @@ async function pollForResponse(runId) {
             delay = Math.min(delay * 1.5, 5000); // Increase delay with each attempt, max 5 seconds
             
             // Get the run status
-            response = await axios.get(`https://api.openai.com/v1/threads/${currentThreadId}/runs/${runId}`, {
-                headers: {
-                    'Authorization': `Bearer ${OPENAI_API_KEY}`,
-                    'Content-Type': 'application/json',
-                    'OpenAI-Beta': 'assistants=v2'
-                }
-            });
+            response = await axios.get(`/api/threads?threadId=${currentThreadId}&runId=${runId}`);
             
             status = response.data.status;
             attempts++;
             
             if (status === 'completed') {
                 // Get the messages from the thread
-                const messagesResponse = await axios.get(`https://api.openai.com/v1/threads/${currentThreadId}/messages`, {
-                    headers: {
-                        'Authorization': `Bearer ${OPENAI_API_KEY}`,
-                        'Content-Type': 'application/json',
-                        'OpenAI-Beta': 'assistants=v2'
-                    }
-                });
+                const messagesResponse = await axios.get(`/api/threads?threadId=${currentThreadId}`);
                 
                 // Get the latest assistant message
                 const assistantMessages = messagesResponse.data.data.filter(msg => msg.role === 'assistant');
@@ -173,7 +152,7 @@ async function pollForResponse(runId) {
             }
         }
     } catch (error) {
-        console.error('Error polling for response:', error.response?.data || error.message);
+        console.error('Error polling for response:', error);
         document.querySelector('.typing-indicator')?.remove();
         addMessage('Sorry, there was an error communicating with the AI assistant. Please try again.', 'assistant');
     }
@@ -818,13 +797,8 @@ window.addEventListener('DOMContentLoaded', () => {
         console.log('Using existing thread ID:', currentThreadId);
     }
     
-    // Initialize the OpenAI assistant if we have the API key
-    if (OPENAI_API_KEY) {
-        initializeOpenAIAssistant();
-    } else {
-        console.error('No OpenAI API key provided');
-        addMessage('Error: API key is missing. Please provide a valid OpenAI API key.', 'assistant');
-    }
+    // Initialize the OpenAI assistant
+    initializeOpenAIAssistant();
     
     // Initialize calendar
     generateCalendar();

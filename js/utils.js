@@ -1,4 +1,3 @@
-
         // AI Chatbot functionality
         let userInfo = {
             name: '',
@@ -165,13 +164,8 @@ You should receive a calendar invitation shortly. Is there anything else you nee
                 console.log('Using existing thread ID:', currentThreadId);
             }
             
-            // Initialize the OpenAI assistant if we have the API key
-            if (OPENAI_API_KEY) {
-                initializeOpenAIAssistant();
-            } else {
-                console.error('No OpenAI API key provided');
-                addMessage('Error: API key is missing. Please provide a valid OpenAI API key.', 'assistant');
-            }
+            // Initialize the OpenAI assistant
+            initializeOpenAIAssistant();
             
             // Initialize calendar
             generateCalendar();
