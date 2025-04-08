@@ -1,6 +1,6 @@
     <script>
         // OpenAI Assistant Configuration
-        const OPENAI_API_KEY = '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';
+        const OPENAI_API_KEY = '';
         let ASSISTANT_ID = 'asst_LphpbIJDzb0QSljhU6KEeaoB'; // Using your specific assistant
         let currentThreadId = null;
 
