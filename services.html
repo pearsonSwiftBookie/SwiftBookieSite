@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - SwiftBookie</title>
+    <meta name="description" content="Explore our comprehensive range of business services designed to help your company grow and succeed.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body class="debug">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="./index.html" class="logo">
+                <i class="ri-calendar-check-line"></i>
+                SwiftBookie
+            </a>
+            <div class="nav-links">
+                <a href="./index.html">Home</a>
+                <a href="./services.html" class="active">Services</a>
+                <a href="./contact.html">Join Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Services Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Our Services</h1>
+                <p>Comprehensive solutions tailored to your business needs</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Filter -->
+    <section class="services-filter">
+        <div class="container">
+            <div class="filter-options">
+                <button class="filter-btn active" data-filter="all">
+                    <i class="ri-apps-line"></i>
+                    All Services
+                </button>
+                <button class="filter-btn" data-filter="web">
+                    <i class="ri-code-box-line"></i>
+                    Web Development
+                </button>
+                <button class="filter-btn" data-filter="ads">
+                    <i class="ri-advertisement-line"></i>
+                    Advertising
+                </button>
+                <button class="filter-btn" data-filter="ai">
+                    <i class="ri-robot-line"></i>
+                    AI Assistants
+                </button>
+            </div>
+            <div class="view-toggle">
+                <button class="view-btn active" data-view="grid">
+                    <i class="ri-grid-line"></i>
+                </button>
+                <button class="view-btn" data-view="list">
+                    <i class="ri-list-check-2"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section class="services-section">
+        <div class="container">
+            <div class="services-wrapper grid-view">
+                <!-- Website Development -->
+                <div class="service-item" data-category="web">
+                    <div class="service-content">
+                        <div class="service-icon">
+                            <i class="ri-code-box-line"></i>
+                        </div>
+                        <h3>Custom Website Development</h3>
+                        <p>Modern, responsive websites built to convert visitors into customers. Includes SEO optimization, analytics, and content management system.</p>
+                        <div class="service-meta">
+                            <span><i class="ri-time-line"></i> 2-4 weeks delivery</span>
+                            <span><i class="ri-user-line"></i> Expert Dev Team</span>
+                        </div>
+                        <div class="service-actions">
+                            <button class="details-btn" data-service="website-dev">
+                                <i class="ri-information-line"></i>
+                                View Details
+                            </button>
+                            <button class="book-btn">
+                                <i class="ri-calendar-line"></i>
+                                Book Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Digital Advertising -->
+                <div class="service-item" data-category="ads">
+                    <div class="service-content">
+                        <div class="service-icon">
+                            <i class="ri-advertisement-line"></i>
+                        </div>
+                        <h3>Digital Advertising Management</h3>
+                        <p>Full-service ad management across Google, Meta, and LinkedIn. Data-driven campaigns optimized for maximum ROI.</p>
+                        <div class="service-meta">
+                            <span><i class="ri-line-chart-line"></i> Monthly Management</span>
+                            <span><i class="ri-funds-line"></i> Performance Based</span>
+                        </div>
+                        <div class="service-actions">
+                            <button class="details-btn" data-service="ad-management">
+                                <i class="ri-information-line"></i>
+                                View Details
+                            </button>
+                            <button class="book-btn">
+                                <i class="ri-calendar-line"></i>
+                                Book Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Assistant Suite -->
+                <div class="service-item" data-category="ai">
+                    <div class="service-content">
+                        <div class="service-icon">
+                            <i class="ri-robot-line"></i>
+                        </div>
+                        <h3>AI Business Assistant Suite</h3>
+                        <p>Comprehensive AI assistant package including chat, email, and voice assistants to automate customer service and business operations.</p>
+                        <div class="service-meta">
+                            <span><i class="ri-customer-service-2-line"></i> 24/7 Operation</span>
+                            <span><i class="ri-database-2-line"></i> Custom Training</span>
+                        </div>
+                        <div class="service-actions">
+                            <button class="details-btn" data-service="ai-suite">
+                                <i class="ri-information-line"></i>
+                                View Details
+                            </button>
+                            <button class="book-btn">
+                                <i class="ri-calendar-line"></i>
+                                Book Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Transform Your Business?</h2>
+                <p>Let's discuss how we can help you achieve your business goals.</p>
+                <div class="cta-actions">
+                    <a href="./contact.html" class="primary-btn">
+                        <i class="ri-user-add-line"></i>
+                        Join Now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <a href="./index.html" class="footer-logo">
+                        <i class="ri-calendar-check-line"></i>
+                        SwiftBookie
+                    </a>
+                    <p>Empowering businesses with innovative booking solutions.</p>
+                </div>
+                <div>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/swiftbookie" target="_blank"><i class="ri-instagram-line"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                © 2024 SwiftBookie. All rights reserved.
+                <p class="founders-line">Co-Founded by <span class="founder-name pulse-glow">Moustapha (CEO)</span>, <span class="founder-name pulse-glow">Carson (CMO)</span>, and <span class="founder-name pulse-glow">Pearson (COO)</span></p>
+                <div class="legal-links">
+                    <a href="/privacy-policy.html">Privacy Policy</a> | 
+                    <a href="/terms-conditions.html">Terms & Conditions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Booking Modal -->
+    <div class="booking-modal">
+        <div class="modal-content">
+            <button class="close-modal">
+                <i class="ri-close-line"></i>
+            </button>
+            <h2>Book a Service</h2>
+            <form id="booking-form">
+                <div class="form-group">
+                    <label for="booking-name">Full Name</label>
+                    <input type="text" id="booking-name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="booking-email">Email Address</label>
+                    <input type="email" id="booking-email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="booking-service">Service</label>
+                    <select id="booking-service" name="service" required>
+                        <option value="">Select a service</option>
+                        <option value="consulting">Business Strategy Consulting</option>
+                        <option value="development">Custom Software Development</option>
+                        <option value="marketing">Digital Marketing Solutions</option>
+                        <option value="design">UI/UX Design Services</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="booking-date">Preferred Date</label>
+                    <input type="date" id="booking-date" name="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="booking-message">Additional Information</label>
+                    <textarea id="booking-message" name="message" rows="4"></textarea>
+                </div>
+                <button type="submit" class="submit-btn">
+                    <i class="ri-calendar-check-line"></i>
+                    Book Appointment
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Service Details Modal -->
+    <div class="modal service-details-modal" id="service-details-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2>Service Details</h2>
+                <button class="close-modal">
+                    <i class="ri-close-line"></i>
+                </button>
+            </div>
+            <div class="modal-content">
+                <!-- Content will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Service Details Templates -->
+    <template id="website-dev-details">
+        <div class="service-details-content">
+            <h4>Professional Website Development</h4>
+            <ul class="features-list">
+                <li><i class="ri-checkbox-circle-line"></i> Custom Design & Development</li>
+                <li><i class="ri-checkbox-circle-line"></i> Mobile-First Responsive Design</li>
+                <li><i class="ri-checkbox-circle-line"></i> SEO Optimization</li>
+                <li><i class="ri-checkbox-circle-line"></i> Content Management System</li>
+                <li><i class="ri-checkbox-circle-line"></i> Analytics Integration</li>
+                <li><i class="ri-checkbox-circle-line"></i> Performance Optimization</li>
+                <li><i class="ri-checkbox-circle-line"></i> Security Features</li>
+                <li><i class="ri-checkbox-circle-line"></i> Regular Maintenance</li>
+            </ul>
+            <div class="consultation-cta">
+                <h5>Ready to Build Your Dream Website?</h5>
+                <p>Let's create a stunning website that represents your brand and drives results.</p>
+                <button class="schedule-btn">
+                    <i class="ri-calendar-line"></i>
+                    Schedule a Free Consultation
+                </button>
+            </div>
+        </div>
+    </template>
+
+    <template id="ad-management-details">
+        <div class="service-details-content">
+            <h4>Digital Advertising Management</h4>
+            <ul class="features-list">
+                <li><i class="ri-checkbox-circle-line"></i> Google Ads Management</li>
+                <li><i class="ri-checkbox-circle-line"></i> Meta Ads (Facebook & Instagram)</li>
+                <li><i class="ri-checkbox-circle-line"></i> LinkedIn Advertising</li>
+                <li><i class="ri-checkbox-circle-line"></i> Custom Audience Creation</li>
+                <li><i class="ri-checkbox-circle-line"></i> A/B Testing</li>
+                <li><i class="ri-checkbox-circle-line"></i> Performance Analytics</li>
+                <li><i class="ri-checkbox-circle-line"></i> Monthly Reporting</li>
+                <li><i class="ri-checkbox-circle-line"></i> ROI Optimization</li>
+            </ul>
+            <div class="consultation-cta">
+                <h5>Ready to Boost Your Online Presence?</h5>
+                <p>Let's create targeted advertising campaigns that reach your ideal customers.</p>
+                <button class="schedule-btn">
+                    <i class="ri-calendar-line"></i>
+                    Schedule a Free Consultation
+                </button>
+            </div>
+        </div>
+    </template>
+
+    <template id="ai-suite-details">
+        <div class="service-details-content">
+            <h4>AI Business Assistant Suite</h4>
+            <div class="ai-assistants-grid">
+                <div class="ai-assistant-card">
+                    <i class="ri-message-3-line"></i>
+                    <h5>Chat Assistant</h5>
+                    <ul>
+                        <li><i class="ri-checkbox-circle-line"></i> iMessage Integration</li>
+                        <li><i class="ri-checkbox-circle-line"></i> Direct Messages</li>
+                        <li><i class="ri-checkbox-circle-line"></i> 24/7 Customer Support</li>
+                        <li><i class="ri-checkbox-circle-line"></i> Quick Response System</li>
+                    </ul>
+                </div>
+                <div class="ai-assistant-card">
+                    <i class="ri-mail-line"></i>
+                    <h5>Email Assistant</h5>
+                    <ul>
+                        <li><i class="ri-checkbox-circle-line"></i> Email Management</li>
+                        <li><i class="ri-checkbox-circle-line"></i> Auto-Responses</li>
+                        <li><i class="ri-checkbox-circle-line"></i> Follow-up Automation</li>
+                        <li><i class="ri-checkbox-circle-line"></i> Priority Inbox</li>
+                    </ul>
+                </div>
+                <div class="ai-assistant-card">
+                    <i class="ri-customer-service-2-line"></i>
+                    <h5>Voice Assistant</h5>
+                    <ul>
+                        <li><i class="ri-checkbox-circle-line"></i> Booking Management</li>
+                        <li><i class="ri-checkbox-circle-line"></i> Client Communications</li>
+                        <li><i class="ri-checkbox-circle-line"></i> Schedule Coordination</li>
+                        <li><i class="ri-checkbox-circle-line"></i> Task Management</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="consultation-cta">
+                <h5>Ready to Automate Your Business?</h5>
+                <p>Let's implement AI assistants that streamline your operations and enhance customer service.</p>
+                <button class="schedule-btn">
+                    <i class="ri-calendar-line"></i>
+                    Schedule a Free Consultation
+                </button>
+            </div>
+        </div>
+    </template>
+
+    <!-- Scripts -->
+    <script src="./services.js" defer></script>
+</body>
+</html> 
